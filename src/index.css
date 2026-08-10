@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-serif: 'Playfair Display', Georgia, serif;
+    --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-cinzel: 'Cinzel', serif;
+    --font-cursive: 'Dancing Script', cursive;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: #fce7f3;
+    color: #4c0519;
+    overflow-x: hidden;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  h1, h2, h3, .font-serif {
+    font-family: var(--font-serif);
+  }
+
+  .font-cinzel {
+    font-family: var(--font-cinzel);
+  }
+
+  .font-cursive {
+    font-family: var(--font-cursive);
+  }
+}
+
+/* Cute Cartoonish Pink Styling */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 3px solid #fbcfe8;
+  box-shadow: 0 12px 30px -5px rgba(244, 63, 94, 0.25), 0 4px 12px rgba(225, 29, 72, 0.1);
+  border-radius: 1.75rem;
+}
+
+.glass-card {
+  background: #ffffff;
+  border: 2.5px solid #fecdd3;
+  box-shadow: 0 8px 24px rgba(244, 63, 94, 0.15);
+  border-radius: 1.5rem;
+}
+
+.glass-pill {
+  background: #fff1f2;
+  border: 2px solid #fda4af;
+  color: #9f1239;
+  border-radius: 9999px;
+}
+
+/* Glowing text and pink gold effects */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #e11d48 0%, #be123c 50%, #9f1239 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-rose-gradient {
+  background: linear-gradient(135deg, #f43f5e 0%, #e11d48 50%, #881337 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.glow-gold {
+  box-shadow: 0 0 25px rgba(244, 63, 94, 0.3);
+}
+
+.glow-rose {
+  box-shadow: 0 0 30px rgba(225, 29, 72, 0.35);
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(2deg); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; filter: drop-shadow(0 0 8px rgba(244, 63, 94, 0.8)); }
+  25% { opacity: 0.85; filter: drop-shadow(0 0 4px rgba(244, 63, 94, 0.6)); }
+  50% { opacity: 0.95; filter: drop-shadow(0 0 12px rgba(225, 29, 72, 0.9)); }
+  75% { opacity: 0.8; filter: drop-shadow(0 0 6px rgba(244, 63, 94, 0.5)); }
+}
+
+.animate-float {
+  animation: float 5s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 4s ease-in-out infinite;
+}
+
+.animate-flicker {
+  animation: flicker 1.8s infinite alternate;
+}
+
+/* Hide scrollbar for clean UI */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
