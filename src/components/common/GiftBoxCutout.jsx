@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-export const GiftBoxCutout = ({ isOpening, onClick }) => {
+export const GiftBoxCutout = React.memo(({ isOpening, onClick }) => {
   return (
     <div
       onClick={onClick}
@@ -15,7 +15,10 @@ export const GiftBoxCutout = ({ isOpening, onClick }) => {
             : { scale: [1, 1.05, 1], opacity: [0.3, 0.5, 0.3] }
         }
         transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute inset-x-4 bottom-4 h-40 bg-gradient-to-t from-pink-400 via-rose-300 to-amber-200 rounded-full blur-2xl -z-10"
+        className="absolute inset-x-4 bottom-4 h-40 rounded-full -z-10"
+        style={{
+          background: 'radial-gradient(ellipse at center, rgba(244,114,182,0.8) 0%, rgba(251,113,133,0.5) 40%, rgba(253,230,138,0.2) 70%, transparent 100%)'
+        }}
       />
 
       {/* Sparkles / Light rays bursting out when opened */}
@@ -46,7 +49,7 @@ export const GiftBoxCutout = ({ isOpening, onClick }) => {
               ? { duration: 1, type: 'spring', stiffness: 90 }
               : { duration: 2.5, repeat: Infinity, ease: 'easeInOut' }
           }
-          className="absolute top-4 z-30 w-full flex justify-center pointer-events-none drop-shadow-xl"
+          className="absolute top-4 z-30 w-full flex justify-center pointer-events-none"
         >
           <img
             src="/images/gift_lid.webp"
@@ -70,4 +73,4 @@ export const GiftBoxCutout = ({ isOpening, onClick }) => {
       </div>
     </div>
   );
-};
+});

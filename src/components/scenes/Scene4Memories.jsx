@@ -24,14 +24,14 @@ export const Scene4Memories = ({ onNext }) => {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      exit={{ opacity: 0, filter: 'blur(8px)', transition: { duration: 0.6 } }}
+      exit={{ opacity: 0, transition: { duration: 0.6 } }}
       className="relative z-10 w-full h-full max-h-full overflow-hidden flex flex-col items-center justify-start pt-5 sm:pt-9 px-4 max-w-md mx-auto text-center"
     >
       {/* Section Badge Pill */}
       <motion.div
         initial={{ y: -10, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        className="mb-3.5 sm:mb-4 px-4 py-1 rounded-full bg-white/80 border border-pink-300/80 text-[11px] sm:text-xs font-bold tracking-wider text-rose-800 uppercase shadow-sm backdrop-blur-sm shrink-0"
+        className="mb-3.5 sm:mb-4 px-4 py-1 rounded-full bg-white/80 border border-pink-300/80 text-[11px] sm:text-xs font-bold tracking-wider text-rose-800 uppercase shadow-sm shrink-0"
       >
         OUR MEMORIES 📸
       </motion.div>

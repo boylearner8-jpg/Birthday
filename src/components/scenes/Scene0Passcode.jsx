@@ -60,7 +60,7 @@ export const Scene0Passcode = ({ onUnlock }) => {
       const id2 = setTimeout(() => {
         setPin('');
         setIsError(false);
-      }, 800);
+      }, 300);
       timeoutRefs.current.push(id2);
     }
   };
@@ -109,7 +109,7 @@ export const Scene0Passcode = ({ onUnlock }) => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.4 }}
           className="flex flex-col items-center gap-4 sm:gap-6 w-full max-w-md mx-auto scale-[0.9] sm:scale-95 md:scale-100"
         >
 
@@ -153,8 +153,8 @@ export const Scene0Passcode = ({ onUnlock }) => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="flex flex-col items-center justify-center text-center w-full max-w-[260px] sm:max-w-[295px] bg-[#fff6f6]/95 sm:bg-white/95 backdrop-blur-md p-3.5 sm:p-4.5 rounded-3xl border-2 border-pink-200 shadow-xl text-rose-950 shrink-0 mt-2 sm:mt-4"
+            transition={{ duration: 0.4 }}
+            className="flex flex-col items-center justify-center text-center w-full max-w-[260px] sm:max-w-[295px] bg-[#fff6f6]/95 sm:bg-white/95 p-3.5 sm:p-4.5 rounded-3xl border-2 border-pink-200 shadow-xl text-rose-950 shrink-0 mt-2 sm:mt-4"
           >
             {/* Bow decoration */}
             <div className="text-xl sm:text-2xl mb-0.5 select-none">🎀</div>

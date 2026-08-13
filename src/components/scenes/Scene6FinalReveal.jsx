@@ -23,7 +23,7 @@ export const Scene6FinalReveal = ({ onReplay }) => {
     <motion.div
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 1 }}
+      transition={{ duration: 0.6 }}
       className="relative z-10 flex flex-col items-center justify-start pt-5 sm:pt-9 px-4 max-w-3xl mx-auto text-center overflow-hidden h-full max-h-full"
     >
       {/* Top Banner */}
@@ -31,7 +31,7 @@ export const Scene6FinalReveal = ({ onReplay }) => {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
-        className="mb-3.5 sm:mb-4 px-4 py-1 rounded-full bg-white/80 border border-pink-300/80 text-[11px] sm:text-xs font-bold tracking-wider text-rose-800 uppercase shadow-sm backdrop-blur-sm"
+        className="mb-3.5 sm:mb-4 px-4 py-1 rounded-full bg-white/80 border border-pink-300/80 text-[11px] sm:text-xs font-bold tracking-wider text-rose-800 uppercase shadow-sm"
       >
         {birthdayData.finale.headline}
       </motion.div>

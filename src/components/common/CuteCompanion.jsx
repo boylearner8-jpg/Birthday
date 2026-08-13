@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Heart } from 'lucide-react';
 import { useSound } from '../../context/SoundContext';
@@ -13,10 +13,17 @@ const sceneDialogues = {
   6: "That was the last surprise... but my love isn't! 🥹💕",
 };
 
-export const CuteCompanion = ({ activeScene = 0, customDialogue = null }) => {
+export const CuteCompanion = React.memo(({ activeScene = 0, customDialogue = null }) => {
   const [hearts, setHearts] = useState([]);
   const [showSpeech, setShowSpeech] = useState(true);
   const { playSfx } = useSound();
+  const heartTimer = useRef(null);
+
+  useEffect(() => {
+    return () => {
+      if (heartTimer.current) clearTimeout(heartTimer.current);
+    };
+  }, []);
 
   const isHidden = customDialogue === "" || customDialogue === false;
   const currentDialogue = customDialogue || sceneDialogues[activeScene] || "Happy Birthday, my love! ❤️";
@@ -43,7 +50,7 @@ export const CuteCompanion = ({ activeScene = 0, customDialogue = null }) => {
     };
     setHearts((prev) => [...prev, newHeart]);
 
-    setTimeout(() => {
+    heartTimer.current = setTimeout(() => {
       setHearts((prev) => prev.filter((h) => h.id !== newHeart.id));
     }, 1200);
   };
@@ -96,13 +103,18 @@ export const CuteCompanion = ({ activeScene = 0, customDialogue = null }) => {
           </motion.div>
         ))}
 
+        {/* Static ground shadow */}
+        <div className={`absolute -bottom-1 left-1/2 -translate-x-1/2 bg-rose-500/25 blur-sm rounded-[100%] pointer-events-none ${
+          isScene3 ? 'w-7 h-1.5' : 'w-12 h-2.5'
+        }`} />
+
         {/* Cute Avatar Cutout (Bottom-Left) */}
         <motion.div
           animate={{ y: [0, -3, 0] }}
           transition={{ repeat: Infinity, duration: 2.8, ease: 'easeInOut' }}
           whileHover={{ scale: 1.06, rotate: 2 }}
           whileTap={{ scale: 0.94 }}
-          className={`relative flex items-center justify-center filter drop-shadow-[0_5px_10px_rgba(244,63,94,0.2)] ${
+          className={`relative flex items-center justify-center ${
             isScene3 ? 'w-[42px] sm:w-[50px]' : 'w-[64px] sm:w-[76px]'
           }`}
         >
@@ -116,4 +128,4 @@ export const CuteCompanion = ({ activeScene = 0, customDialogue = null }) => {
       </div>
     </div>
   );
-};
+});

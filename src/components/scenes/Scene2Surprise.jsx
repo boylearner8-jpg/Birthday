@@ -37,7 +37,7 @@ export const Scene2Surprise = ({ onNext }) => {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      exit={{ opacity: 0, filter: 'blur(8px)', transition: { duration: 0.5 } }}
+      exit={{ opacity: 0, transition: { duration: 0.5 } }}
       className="relative z-10 w-full h-full max-h-full overflow-hidden flex flex-col items-center justify-start pt-6 sm:pt-10 px-3"
     >
       {/* ═══════════════════════════════════════════════════════
@@ -49,7 +49,7 @@ export const Scene2Surprise = ({ onNext }) => {
           initial={{ y: -10, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.45 }}
-          className="inline-flex items-center gap-1.5 px-4 py-1 rounded-full border border-pink-300/80 text-[10px] sm:text-xs font-bold tracking-wider text-rose-800 uppercase shadow-sm backdrop-blur-sm mb-3.5 sm:mb-4.5"
+          className="inline-flex items-center gap-1.5 px-4 py-1 rounded-full border border-pink-300/80 text-[10px] sm:text-xs font-bold tracking-wider text-rose-800 uppercase shadow-sm mb-3.5 sm:mb-4.5"
           style={{ background: 'rgba(255, 255, 255, 0.78)' }}
         >
           SURPRISE LEVEL 02 ✨
@@ -94,7 +94,7 @@ export const Scene2Surprise = ({ onNext }) => {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.97 }}
               onClick={() => handleGiftClick(gift)}
-              className={`w-full p-3.5 sm:p-4 rounded-[24px] bg-gradient-to-b from-white/95 via-pink-50/90 to-rose-50/95 border-2 text-left cursor-pointer transition-all duration-300 flex items-center gap-3.5 relative overflow-hidden backdrop-blur-md group ${
+              className={`w-full p-3.5 sm:p-4 rounded-[24px] bg-gradient-to-b from-white/95 via-pink-50/90 to-rose-50/95 border-2 text-left cursor-pointer transition-all duration-300 flex items-center gap-3.5 relative overflow-hidden group ${
                 isOpened
                   ? 'border-pink-300 shadow-[0_4px_16px_rgba(244,63,94,0.12)]'
                   : 'border-pink-200/90 shadow-[0_8px_24px_rgba(244,63,94,0.16)] hover:border-pink-300'
@@ -172,7 +172,7 @@ export const Scene2Surprise = ({ onNext }) => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={handleCloseModal}
-              className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-rose-950/40 backdrop-blur-md"
+              className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-rose-950/60"
             >
               <motion.div
                 initial={{ scale: 0.88, y: 15 }}

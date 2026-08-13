@@ -17,6 +17,21 @@ const Scene6FinalReveal = lazy(() => import('./components/scenes/Scene6FinalReve
 export default function App() {
   const isPasscodeEnabled = birthdayData.passcode?.enabled ?? true;
 
+  // Preload heavy images early so they don't pop in late
+  React.useEffect(() => {
+    const imagesToPreload = [
+      '/images/cat_pfp.webp',
+      '/images/gift_base.webp',
+      '/images/gift_lid.webp',
+      '/images/strawberry_cake.webp',
+      '/images/couple_cat_1.webp',
+    ];
+    imagesToPreload.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, []);
+
   const [isUnlocked, setIsUnlocked] = useState(!isPasscodeEnabled);
   const [scene, setScene] = useState(isPasscodeEnabled ? 0 : 1);
   const [customCompanionDialogue, setCustomCompanionDialogue] = useState(null);

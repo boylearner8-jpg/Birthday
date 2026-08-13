@@ -84,18 +84,18 @@ export const Scene1Opening = ({ onComplete }) => {
       colors: ['#fecdd3', '#fda4af', '#fb7185', '#f43f5e', '#fff1f2', '#ffd700'],
     });
 
-    // 2. Letter reaches center & settles at 0.8s
+    // 2. Letter reaches center & settles at 0.3s
     safeTimeout(() => {
       setAnimPhase('displaying');
       try { playSfx('chime'); } catch (e) {}
-    }, 800);
+    }, 300);
 
-    // 3. Soft Golden/Pink Glow at 1.8s
+    // 3. Soft Golden/Pink Glow at 0.6s
     safeTimeout(() => {
       setAnimPhase('glowing');
-    }, 1800);
+    }, 600);
 
-    // 4. Dissolve into glowing camera particles at 2.4s
+    // 4. Dissolve into glowing camera particles at 0.9s
     safeTimeout(() => {
       if (isCompleting.current) return;
       setAnimPhase('dissolving');
@@ -105,15 +105,15 @@ export const Scene1Opening = ({ onComplete }) => {
         origin: { y: 0.4 },
         colors: ['#fecdd3', '#fda4af', '#fb7185', '#fff1f2', '#ffd700'],
       });
-    }, 2400);
+    }, 900);
 
-    // 5. Complete & Transition to Scene 2 at exactly 3.0s
+    // 5. Complete & Transition to Scene 2 at exactly 1.2s
     safeTimeout(() => {
       if (!isCompleting.current) {
         isCompleting.current = true;
         onComplete();
       }
-    }, 3000);
+    }, 1200);
   };
 
   const isBoxOpened = animPhase !== 'idle';
@@ -124,7 +124,7 @@ export const Scene1Opening = ({ onComplete }) => {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      exit={{ opacity: 0, filter: 'blur(12px)', transition: { duration: 0.8 } }}
+      exit={{ opacity: 0, transition: { duration: 0.5 } }}
       className="relative z-10 w-full h-full overflow-hidden flex flex-col items-center justify-start gap-3 sm:gap-4"
       style={{
         marginTop: '55px',
@@ -137,7 +137,7 @@ export const Scene1Opening = ({ onComplete }) => {
           ═════════════════════════════════════════════════════════ */}
       <motion.div
         animate={isBoxOpened ? { opacity: 0.3, y: -10 } : { opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
+        transition={{ duration: 0.5 }}
         className="flex flex-col items-center w-full shrink-0"
         style={{ gap: 'clamp(6px,1.5vh,12px)' }}
       >
@@ -158,7 +158,6 @@ export const Scene1Opening = ({ onComplete }) => {
             letterSpacing: '0.08em',
             color: '#9b2540',
             textTransform: 'uppercase',
-            backdropFilter: 'blur(6px)',
             boxShadow: '0 2px 8px rgba(200,80,110,0.13)',
           }}
         >
@@ -264,7 +263,6 @@ export const Scene1Opening = ({ onComplete }) => {
               height: '180px',
               borderRadius: '50%',
               background: 'radial-gradient(circle, rgba(254,240,138,0.85) 0%, rgba(244,114,182,0.6) 45%, transparent 75%)',
-              filter: 'blur(16px)',
             }}
           />
         )}
@@ -308,12 +306,12 @@ export const Scene1Opening = ({ onComplete }) => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 0.45 }}
               transition={{ duration: 0.8 }}
-              className="absolute inset-0 bg-rose-950/40 backdrop-blur-sm"
+              className="absolute inset-0 bg-rose-950/40"
             />
 
             {/* Glowing Golden Light Specks & Floating Particles */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
-              {[...Array(16)].map((_, i) => (
+              {[...Array(8)].map((_, i) => (
                 <motion.div
                   key={i}
                   initial={{
@@ -333,7 +331,7 @@ export const Scene1Opening = ({ onComplete }) => {
                     delay: 0.15 + i * 0.12,
                     ease: 'easeOut',
                   }}
-                  className="absolute left-1/2 bottom-1/4 w-3 h-3 rounded-full bg-gradient-to-tr from-amber-200 via-pink-300 to-rose-400 blur-[1px] shadow-[0_0_10px_rgba(253,224,71,0.85)]"
+                  className="absolute left-1/2 bottom-1/4 w-3 h-3 rounded-full bg-gradient-to-tr from-amber-200 via-pink-300 to-rose-400 shadow-[0_0_10px_rgba(253,224,71,0.85)]"
                 />
               ))}
             </div>
@@ -350,7 +348,7 @@ export const Scene1Opening = ({ onComplete }) => {
               transition={
                 animPhase === 'dissolving'
                   ? { duration: 0.9, ease: 'easeInOut' }
-                  : { duration: 1.3, type: 'spring', stiffness: 70, damping: 13 }
+                  : { duration: 1.0, type: 'spring', stiffness: 70, damping: 13 }
               }
               className="relative w-full max-w-[320px] sm:max-w-[360px] pointer-events-auto cursor-pointer"
             >
@@ -362,7 +360,7 @@ export const Scene1Opening = ({ onComplete }) => {
                     : { scale: 1, opacity: 0.5 }
                 }
                 transition={{ duration: 1.4, repeat: Infinity, ease: 'easeInOut' }}
-                className="absolute -inset-6 rounded-[36px] bg-gradient-to-r from-amber-200/60 via-rose-300/70 to-pink-400/60 blur-2xl -z-10"
+                className="absolute -inset-6 rounded-[36px] bg-gradient-to-r from-amber-200/60 via-rose-300/70 to-pink-400/60 -z-10"
               />
 
               {/* ── Gorgeous Physical Handwritten Parchment Letter Card ── */}
@@ -378,7 +376,7 @@ export const Scene1Opening = ({ onComplete }) => {
                 <span className="absolute bottom-3.5 right-4 text-pink-300 text-xs select-none">♥</span>
 
                 {/* Inner Romantic Paper Border */}
-                <div className="border border-[#dfc491]/60 rounded-[24px] p-5 sm:p-6 bg-white/50 backdrop-blur-xs flex flex-col items-center justify-center">
+                <div className="border border-[#dfc491]/60 rounded-[24px] p-5 sm:p-6 bg-white/70 flex flex-col items-center justify-center">
                   
                   {/* Wax Seal / Rose Badge Header */}
                   <motion.div

@@ -21,7 +21,7 @@ export const Scene5LoveLetter = ({ onNext, setCustomDialogue }) => {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      exit={{ opacity: 0, filter: 'blur(8px)', transition: { duration: 0.6 } }}
+      exit={{ opacity: 0, transition: { duration: 0.6 } }}
       className="relative z-10 w-full h-full max-h-full overflow-hidden flex flex-col items-center justify-start pt-5 sm:pt-9 px-3"
     >
       {/* ═══════════════════════════════════════════════════════
@@ -33,7 +33,7 @@ export const Scene5LoveLetter = ({ onNext, setCustomDialogue }) => {
           initial={{ y: -10, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.45 }}
-          className="inline-flex items-center gap-1.5 px-4 py-1 rounded-full border border-pink-300/80 text-[10px] sm:text-xs font-bold tracking-wider text-rose-800 uppercase shadow-sm backdrop-blur-sm mb-3.5 sm:mb-4.5"
+          className="inline-flex items-center gap-1.5 px-4 py-1 rounded-full border border-pink-300/80 text-[10px] sm:text-xs font-bold tracking-wider text-rose-800 uppercase shadow-sm mb-3.5 sm:mb-4.5"
           style={{ background: 'rgba(255, 255, 255, 0.78)' }}
         >
           FROM MY SOUL TO YOURS 💌
@@ -94,7 +94,7 @@ export const Scene5LoveLetter = ({ onNext, setCustomDialogue }) => {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.97 }}
               onClick={handleOpenEnvelope}
-              className="w-[84vw] max-w-[340px] h-[350px] sm:h-[380px] rounded-[32px] bg-gradient-to-b from-white/95 via-pink-50/90 to-rose-50/95 border-2 border-pink-200/90 p-5 flex flex-col items-center justify-between text-center cursor-pointer shadow-[0_14px_40px_rgba(244,63,94,0.22)] relative overflow-hidden backdrop-blur-md shrink-0 group"
+              className="w-[84vw] max-w-[340px] h-[350px] sm:h-[380px] rounded-[32px] bg-gradient-to-b from-white/95 via-pink-50/90 to-rose-50/95 border-2 border-pink-200/90 p-5 flex flex-col items-center justify-between text-center cursor-pointer shadow-[0_14px_40px_rgba(244,63,94,0.22)] relative overflow-hidden shrink-0 group"
             >
               {/* Subtle background glow */}
               <div className="absolute inset-0 bg-gradient-to-tr from-pink-300/20 via-rose-200/15 to-amber-100/20 rounded-[32px] blur-xl -z-10 group-hover:opacity-100 transition-opacity opacity-75" />
@@ -159,7 +159,7 @@ export const Scene5LoveLetter = ({ onNext, setCustomDialogue }) => {
               initial={{ opacity: 0, scale: 0.88, y: 15 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ duration: 0.5, type: 'spring', stiffness: 120 }}
-              className="w-[84vw] max-w-[340px] rounded-[28px] bg-white/95 border-2 border-pink-200 p-5 flex flex-col text-left shadow-[0_14px_36px_rgba(244,63,94,0.22)] backdrop-blur-md max-h-[56vh] overflow-hidden"
+              className="w-[84vw] max-w-[340px] rounded-[28px] bg-white/95 border-2 border-pink-200 p-5 flex flex-col text-left shadow-[0_14px_36px_rgba(244,63,94,0.22)] max-h-[56vh] overflow-hidden"
             >
               {/* Header Bar */}
               <div className="flex justify-between items-center mb-2.5 pb-2 border-b border-pink-100 shrink-0">

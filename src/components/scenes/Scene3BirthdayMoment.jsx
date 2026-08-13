@@ -82,7 +82,6 @@ export const Scene3BirthdayMoment = ({ onNext }) => {
             color: '#c0445a',
             textTransform: 'uppercase',
             boxShadow: '0 2px 8px rgba(200,80,110,0.12)',
-            backdropFilter: 'blur(6px)',
           }}
         >
           THE MAGIC MOMENT ✨
@@ -264,12 +263,6 @@ export const Scene3BirthdayMoment = ({ onNext }) => {
                         boxShadow: '0 0 12px 3px rgba(251,146,60,0.65)',
                       }}
                     />
-                    <div style={{
-                      position:'absolute', inset:0,
-                      background:'rgba(254,240,138,0.48)',
-                      borderRadius:'60% 60% 40% 40% / 60% 60% 40% 40%',
-                      filter:'blur(3px)',
-                    }}/>
                   </motion.div>
                 ) : (
                   <motion.span
@@ -305,8 +298,7 @@ export const Scene3BirthdayMoment = ({ onNext }) => {
                 height: 'clamp(38px,10vw,48px)',
                 borderRadius: '35px',
                 border: '2px solid #f4a8b8',
-                background: 'rgba(255,255,255,0.82)',
-                backdropFilter: 'blur(6px)',
+                background: 'rgba(255,255,255,0.88)',
                 fontSize: 'clamp(11px,3.1vw,14px)',
                 fontWeight: 600,
                 color: '#c0445a',

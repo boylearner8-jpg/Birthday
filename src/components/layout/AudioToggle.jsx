@@ -2,7 +2,7 @@ import React from 'react';
 import { Volume2, VolumeX } from 'lucide-react';
 import { useSound } from '../../context/SoundContext';
 
-export const AudioToggle = () => {
+export const AudioToggle = React.memo(() => {
   const { isMuted, isPlaying, toggleMute } = useSound();
 
   return (
@@ -32,4 +32,4 @@ export const AudioToggle = () => {
       )}
     </button>
   );
-};
+});

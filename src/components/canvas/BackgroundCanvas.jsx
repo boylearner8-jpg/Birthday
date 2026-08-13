@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const BackgroundCanvas = ({ activeScene }) => {
+export const BackgroundCanvas = React.memo(({ activeScene }) => {
   return (
     <div className="fixed inset-0 pointer-events-none z-0">
       {/* Full-screen scrapbook background for post-login scenes */}
@@ -18,4 +18,4 @@ export const BackgroundCanvas = ({ activeScene }) => {
       <div className="absolute inset-0 bg-black/10" />
     </div>
   );
-};
+});
