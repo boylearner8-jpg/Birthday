@@ -6,11 +6,11 @@ import { useSound } from '../../context/SoundContext';
 
 // Candle tip positions — % coords relative to cake container
 const candlePositions = [
-  { id: 0, top: '16%',  left: '20.5%' },
-  { id: 1, top: '28%',  left: '37.5%' },
-  { id: 2, top: '8.5%', left: '47.2%' },
-  { id: 3, top: '27.5%',left: '62.8%' },
-  { id: 4, top: '14.5%',left: '70.2%' },
+  { id: 0, top: '15.5%', left: '20.2%' },
+  { id: 1, top: '26.5%', left: '37.0%' },
+  { id: 2, top: '8.0%',  left: '47.2%' },
+  { id: 3, top: '26.0%', left: '62.5%' },
+  { id: 4, top: '13.8%', left: '70.5%' },
 ];
 
 export const Scene3BirthdayMoment = ({ onNext }) => {
@@ -28,7 +28,7 @@ export const Scene3BirthdayMoment = ({ onNext }) => {
     if (updated.every((s) => !s)) {
       setAllBlown(true);
       playSfx('chime');
-      confetti({ particleCount: 140, spread: 120, origin: { y: 0.5 },
+      confetti({ particleCount: 80, spread: 120, origin: { y: 0.5 },
         colors: ['#fecdd3','#fda4af','#fb7185','#f43f5e','#e11d48','#fff1f2'] });
     }
   };
@@ -39,7 +39,7 @@ export const Scene3BirthdayMoment = ({ onNext }) => {
     setCandlesLit([false,false,false,false,false]);
     setAllBlown(true);
     playSfx('chime');
-    confetti({ particleCount: 150, spread: 130, origin: { y: 0.5 },
+    confetti({ particleCount: 85, spread: 130, origin: { y: 0.5 },
       colors: ['#fecdd3','#fda4af','#fb7185','#f43f5e','#e11d48','#fff1f2'] });
   };
 
@@ -163,7 +163,7 @@ export const Scene3BirthdayMoment = ({ onNext }) => {
           position: 'relative',
         }}>
           <img
-            src="/images/couple_cat_1.jpg"
+            src="/images/couple_cat_1.webp"
             alt="Our Sweet Memories"
             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
           />
@@ -221,7 +221,7 @@ export const Scene3BirthdayMoment = ({ onNext }) => {
         }}
       >
         <img
-          src="/images/strawberry_cake.png"
+          src="/images/strawberry_cake.webp"
           alt="Strawberry Birthday Cake"
           style={{ width:'100%', height:'100%', objectFit:'contain', display:'block' }}
           draggable="false"
@@ -238,7 +238,7 @@ export const Scene3BirthdayMoment = ({ onNext }) => {
                 position: 'absolute',
                 top: pos.top,
                 left: pos.left,
-                transform: 'translate(-50%,-50%)',
+                transform: 'translate(-50%,-85%)',
                 cursor: 'pointer',
                 zIndex: 30,
                 padding: '8px',

@@ -49,7 +49,7 @@ export const GiftBoxCutout = ({ isOpening, onClick }) => {
           className="absolute top-4 z-30 w-full flex justify-center pointer-events-none drop-shadow-xl"
         >
           <img
-            src="/images/gift_lid.png"
+            src="/images/gift_lid.webp"
             alt="Gift Box Lid"
             className="w-full max-w-[200px] md:max-w-[240px] object-contain group-hover:scale-105 transition-transform duration-300"
           />
@@ -62,7 +62,7 @@ export const GiftBoxCutout = ({ isOpening, onClick }) => {
           className="relative z-10 w-full flex justify-center drop-shadow-2xl"
         >
           <img
-            src="/images/gift_base.png"
+            src="/images/gift_base.webp"
             alt="Gift Box Base"
             className="w-full max-w-[200px] md:max-w-[240px] object-contain group-hover:scale-[1.02] transition-transform duration-300"
           />

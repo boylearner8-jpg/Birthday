@@ -27,6 +27,19 @@ export const Scene1Opening = ({ onComplete }) => {
   const [giftScale, setGiftScale] = useState(1);
   const { playSfx, unlockAudio }  = useSound();
   const hasTriggered = useRef(false);
+  const timerRefs = useRef([]);
+
+  const safeTimeout = (fn, ms) => {
+    const id = setTimeout(fn, ms);
+    timerRefs.current.push(id);
+    return id;
+  };
+
+  useEffect(() => {
+    return () => {
+      timerRefs.current.forEach(clearTimeout);
+    };
+  }, []);
 
   /* Compute scale once after mount */
   useEffect(() => {
@@ -42,12 +55,12 @@ export const Scene1Opening = ({ onComplete }) => {
     isCompleting.current = true;
     setAnimPhase('dissolving');
     confetti({
-      particleCount: 85,
+      particleCount: 50,
       spread: 110,
       origin: { y: 0.4 },
       colors: ['#fecdd3', '#fda4af', '#fb7185', '#fff1f2', '#ffd700'],
     });
-    setTimeout(() => {
+    safeTimeout(() => {
       onComplete();
     }, 550);
   };
@@ -65,29 +78,29 @@ export const Scene1Opening = ({ onComplete }) => {
 
     // Initial sparkles
     confetti({
-      particleCount: 75,
+      particleCount: 45,
       spread: 80,
       origin: { y: 0.65 },
       colors: ['#fecdd3', '#fda4af', '#fb7185', '#f43f5e', '#fff1f2', '#ffd700'],
     });
 
     // 2. Letter reaches center & settles at 0.8s
-    setTimeout(() => {
+    safeTimeout(() => {
       setAnimPhase('displaying');
       try { playSfx('chime'); } catch (e) {}
     }, 800);
 
     // 3. Soft Golden/Pink Glow at 1.8s
-    setTimeout(() => {
+    safeTimeout(() => {
       setAnimPhase('glowing');
     }, 1800);
 
     // 4. Dissolve into glowing camera particles at 2.4s
-    setTimeout(() => {
+    safeTimeout(() => {
       if (isCompleting.current) return;
       setAnimPhase('dissolving');
       confetti({
-        particleCount: 85,
+        particleCount: 50,
         spread: 110,
         origin: { y: 0.4 },
         colors: ['#fecdd3', '#fda4af', '#fb7185', '#fff1f2', '#ffd700'],
@@ -95,7 +108,7 @@ export const Scene1Opening = ({ onComplete }) => {
     }, 2400);
 
     // 5. Complete & Transition to Scene 2 at exactly 3.0s
-    setTimeout(() => {
+    safeTimeout(() => {
       if (!isCompleting.current) {
         isCompleting.current = true;
         onComplete();

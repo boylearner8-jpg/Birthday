@@ -25,7 +25,7 @@ export const Scene4Memories = ({ onNext }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0, filter: 'blur(8px)', transition: { duration: 0.6 } }}
-      className="relative z-10 w-full h-full overflow-hidden flex flex-col items-center justify-start pt-10 sm:pt-14 px-4 max-w-md mx-auto text-center"
+      className="relative z-10 w-full h-full max-h-full overflow-hidden flex flex-col items-center justify-start pt-5 sm:pt-9 px-4 max-w-md mx-auto text-center"
     >
       {/* Section Badge Pill */}
       <motion.div

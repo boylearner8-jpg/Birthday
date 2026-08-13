@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Delete, Lock, Check } from 'lucide-react';
 import confetti from 'canvas-confetti';
@@ -10,6 +10,7 @@ export const Scene0Passcode = ({ onUnlock }) => {
   const [isError, setIsError] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const { playSfx, unlockAudio } = useSound();
+  const timeoutRefs = useRef([]);
 
   const targetCode = birthdayData.passcode.code || '1234';
 
@@ -40,27 +41,35 @@ export const Scene0Passcode = ({ onUnlock }) => {
       playSfx('giftOpen');
 
       confetti({
-        particleCount: 140,
+        particleCount: 80,
         spread: 110,
         origin: { y: 0.5 },
         colors: ['#fecdd3', '#fda4af', '#fb7185', '#f43f5e', '#e11d48', '#ffffff'],
       });
 
-      setTimeout(() => {
+      const id = setTimeout(() => {
         onUnlock();
       }, 1200);
+      timeoutRefs.current.push(id);
     } else {
       setIsError(true);
       playSfx('candleBlow');
 
       if (navigator.vibrate) navigator.vibrate(200);
 
-      setTimeout(() => {
+      const id2 = setTimeout(() => {
         setPin('');
         setIsError(false);
       }, 800);
+      timeoutRefs.current.push(id2);
     }
   };
+
+  useEffect(() => {
+    return () => {
+      timeoutRefs.current.forEach(clearTimeout);
+    };
+  }, []);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -79,13 +88,13 @@ export const Scene0Passcode = ({ onUnlock }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0, transition: { duration: 0.5 } }}
-      className="fixed inset-0 z-10 overflow-y-auto"
+      className="fixed inset-0 z-10 overflow-hidden"
     >
       {/* Full-screen background image */}
       <div
         className="fixed inset-0 w-full h-full"
         style={{
-          backgroundImage: 'url(/images/login_bg.jpg)',
+          backgroundImage: 'url(/images/login_bg.webp)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
@@ -96,7 +105,7 @@ export const Scene0Passcode = ({ onUnlock }) => {
       <div className="fixed inset-0 bg-rose-950/5 pointer-events-none" />
 
       {/* Content: Shifted slightly above center */}
-      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-3 -mt-6 sm:-mt-8 pb-6 text-center">
+      <div className="relative z-10 flex flex-col items-center justify-center h-full max-h-full px-3 -mt-4 sm:-mt-6 text-center overflow-hidden">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

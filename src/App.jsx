@@ -1,19 +1,18 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, lazy, Suspense } from 'react';
 import { AnimatePresence } from 'framer-motion';
-import { Lock, KeyRound } from 'lucide-react';
 import { SoundProvider } from './context/SoundContext';
 import { AudioToggle } from './components/layout/AudioToggle';
 import { BackgroundCanvas } from './components/canvas/BackgroundCanvas';
 import { CuteCompanion } from './components/common/CuteCompanion';
 import { birthdayData } from './data/birthdayData';
 
-import { Scene0Passcode } from './components/scenes/Scene0Passcode';
-import { Scene1Opening } from './components/scenes/Scene1Opening';
-import { Scene2Surprise } from './components/scenes/Scene2Surprise';
-import { Scene3BirthdayMoment } from './components/scenes/Scene3BirthdayMoment';
-import { Scene4Memories } from './components/scenes/Scene4Memories';
-import { Scene5LoveLetter } from './components/scenes/Scene5LoveLetter';
-import { Scene6FinalReveal } from './components/scenes/Scene6FinalReveal';
+const Scene0Passcode = lazy(() => import('./components/scenes/Scene0Passcode').then(m => ({ default: m.Scene0Passcode })));
+const Scene1Opening = lazy(() => import('./components/scenes/Scene1Opening').then(m => ({ default: m.Scene1Opening })));
+const Scene2Surprise = lazy(() => import('./components/scenes/Scene2Surprise').then(m => ({ default: m.Scene2Surprise })));
+const Scene3BirthdayMoment = lazy(() => import('./components/scenes/Scene3BirthdayMoment').then(m => ({ default: m.Scene3BirthdayMoment })));
+const Scene4Memories = lazy(() => import('./components/scenes/Scene4Memories').then(m => ({ default: m.Scene4Memories })));
+const Scene5LoveLetter = lazy(() => import('./components/scenes/Scene5LoveLetter').then(m => ({ default: m.Scene5LoveLetter })));
+const Scene6FinalReveal = lazy(() => import('./components/scenes/Scene6FinalReveal').then(m => ({ default: m.Scene6FinalReveal })));
 
 export default function App() {
   const isPasscodeEnabled = birthdayData.passcode?.enabled ?? true;
@@ -94,7 +93,7 @@ export default function App() {
 
   return (
     <SoundProvider>
-      <div className="relative h-screen max-h-screen w-full overflow-hidden text-slate-100 flex flex-col justify-between selection:bg-rose-500/30">
+      <div className="relative h-[100dvh] h-screen max-h-[100dvh] w-full overflow-hidden text-slate-100 flex flex-col justify-between selection:bg-rose-500/30">
         <BackgroundCanvas activeScene={scene} />
 
         <header className="relative z-40 px-4 py-2 flex justify-between items-center max-w-6xl mx-auto w-full shrink-0">
@@ -111,9 +110,11 @@ export default function App() {
         </header>
 
         <main className="relative z-10 flex-1 flex flex-col items-center justify-center overflow-hidden w-full max-w-6xl mx-auto px-2">
-          <AnimatePresence mode="wait">
-            {renderActiveScene()}
-          </AnimatePresence>
+          <Suspense fallback={<div className="flex items-center justify-center h-full w-full"><span className="text-rose-400 text-sm animate-pulse">✨</span></div>}>
+            <AnimatePresence mode="wait">
+              {renderActiveScene()}
+            </AnimatePresence>
+          </Suspense>
         </main>
 
         <CuteCompanion activeScene={isUnlocked ? scene : 0} customDialogue={customCompanionDialogue} />

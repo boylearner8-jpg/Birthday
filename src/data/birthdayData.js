@@ -5,7 +5,7 @@
 
 export const birthdayData = {
   // Avatar Character Cutout Asset
-  avatarImage: "/images/cute_avatar.png",
+  avatarImage: "/images/cute_avatar.webp",
 
   // Passcode Lock Screen Config
   passcode: {
@@ -13,7 +13,7 @@ export const birthdayData = {
     code: "1234", // Default 4-digit passcode (Customize to birthday e.g. "0810" or anniversary)
     hint: "Enter your secret birthday passcode 🔐",
     title: "Enter a passcode",
-    coupleImage: "/images/couple_cat_1.jpg",
+    coupleImage: "/images/couple_cat_1.webp",
     flowerColor: "#fda4af",
   },
 
@@ -80,7 +80,7 @@ export const birthdayData = {
     photos: [
       {
         id: 1,
-        image: "/images/couple_cat_1.jpg",
+        image: "/images/couple_cat_1.webp",
         caption: "Where our story began ❤️",
         location: "Sunset Point",
         date: "Special Day",
@@ -88,7 +88,7 @@ export const birthdayData = {
       },
       {
         id: 2,
-        image: "/images/couple_cat_2.jpg",
+        image: "/images/couple_cat_2.webp",
         caption: "Your infectious laugh that melts my heart ✨",
         location: "Cozy Evening",
         date: "Unforgettable Moment",
@@ -96,7 +96,7 @@ export const birthdayData = {
       },
       {
         id: 3,
-        image: "/images/couple_cat_3.jpg",
+        image: "/images/couple_cat_3.webp",
         caption: "Every adventure is magical with you 🌌",
         location: "Under the Stars",
         date: "Stargazing Night",
@@ -104,7 +104,7 @@ export const birthdayData = {
       },
       {
         id: 4,
-        image: "/images/couple_cat_4.jpg",
+        image: "/images/couple_cat_4.webp",
         caption: "Here's to a lifetime of love and happiness 🥂",
         location: "Celebration",
         date: "Forever & Always",
@@ -132,7 +132,7 @@ export const birthdayData = {
     headline: "One last surprise...",
     title: "Happy Birthday, My Entire World ❤️",
     subtext: "Thank you for filling my life with pure magic.",
-    featuredImage: "/images/couple_cat_3.jpg",
+    featuredImage: "/images/couple_cat_3.webp",
     replayButtonText: "Replay the Surprise 🔄",
   },
 

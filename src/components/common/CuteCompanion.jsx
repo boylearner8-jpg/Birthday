@@ -107,7 +107,7 @@ export const CuteCompanion = ({ activeScene = 0, customDialogue = null }) => {
           }`}
         >
           <img
-            src="/images/cute_avatar.png"
+            src="/images/cute_avatar.webp"
             alt="Chibi Companion"
             className="w-full h-auto object-contain select-none pointer-events-none"
             draggable="false"

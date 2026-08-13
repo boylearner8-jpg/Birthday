@@ -12,7 +12,7 @@ export const Scene6FinalReveal = ({ onReplay }) => {
     // Grand Finale Pink Confetti Burst
     playSfx('chime');
     confetti({
-      particleCount: 160,
+      particleCount: 90,
       spread: 120,
       origin: { y: 0.4 },
       colors: ['#fecdd3', '#fda4af', '#fb7185', '#f43f5e', '#e11d48', '#fff1f2'],
@@ -24,7 +24,7 @@ export const Scene6FinalReveal = ({ onReplay }) => {
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 1 }}
-      className="relative z-10 flex flex-col items-center justify-start pt-10 sm:pt-14 px-4 max-w-3xl mx-auto text-center overflow-hidden h-full"
+      className="relative z-10 flex flex-col items-center justify-start pt-5 sm:pt-9 px-4 max-w-3xl mx-auto text-center overflow-hidden h-full max-h-full"
     >
       {/* Top Banner */}
       <motion.div
@@ -66,6 +66,7 @@ export const Scene6FinalReveal = ({ onReplay }) => {
           <img
             src={birthdayData.finale.featuredImage}
             alt="Final Birthday Surprise"
+            loading="lazy"
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-rose-950/70 via-transparent to-transparent" />

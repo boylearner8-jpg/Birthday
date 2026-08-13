@@ -38,12 +38,12 @@ export const Scene2Surprise = ({ onNext }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0, filter: 'blur(8px)', transition: { duration: 0.5 } }}
-      className="relative z-10 w-full h-full overflow-hidden flex flex-col items-center justify-start pt-10 sm:pt-14 px-3"
+      className="relative z-10 w-full h-full max-h-full overflow-hidden flex flex-col items-center justify-start pt-6 sm:pt-10 px-3"
     >
       {/* ═══════════════════════════════════════════════════════
           GROUP 1 — Header (Badge · Title · Subtext)
           ═══════════════════════════════════════════════════════ */}
-      <div className="flex flex-col items-center w-full shrink-0 mb-6 sm:mb-8">
+      <div className="flex flex-col items-center w-full shrink-0 mb-4 sm:mb-6">
         {/* Badge Pill */}
         <motion.div
           initial={{ y: -10, opacity: 0 }}
@@ -162,63 +162,76 @@ export const Scene2Surprise = ({ onNext }) => {
           Modal View for Opened Gift Content
           ═══════════════════════════════════════════════════════ */}
       <AnimatePresence>
-        {activeModalGift && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={handleCloseModal}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-rose-950/40 backdrop-blur-md"
-          >
+        {activeModalGift && (() => {
+          const currentIndex = birthdayData.gifts.findIndex((g) => g.id === activeModalGift.id);
+          const nextGift = birthdayData.gifts[currentIndex + 1];
+
+          return (
             <motion.div
-              initial={{ scale: 0.88, y: 15 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.88, y: 15 }}
-              onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-sm rounded-[32px] bg-white/98 border-2 border-pink-200 p-6 text-left shadow-[0_16px_48px_rgba(244,63,94,0.25)] overflow-hidden"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={handleCloseModal}
+              className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-rose-950/40 backdrop-blur-md"
             >
-              {/* Close Button */}
-              <button
-                onClick={handleCloseModal}
-                className="absolute top-4 right-4 p-1.5 rounded-full bg-pink-100 text-rose-800 hover:bg-pink-200 transition-colors cursor-pointer"
+              <motion.div
+                initial={{ scale: 0.88, y: 15 }}
+                animate={{ scale: 1, y: 0 }}
+                exit={{ scale: 0.88, y: 15 }}
+                onClick={(e) => e.stopPropagation()}
+                className="relative w-full max-w-sm rounded-[32px] bg-white/98 border-2 border-pink-200 p-6 text-left shadow-[0_16px_48px_rgba(244,63,94,0.25)] overflow-hidden"
               >
-                <X className="w-4 h-4" />
-              </button>
-
-              <span className="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-pink-100 text-rose-800 border border-pink-200 mb-2 inline-block">
-                {activeModalGift.badge}
-              </span>
-
-              <h3 className="text-xl font-bold font-serif text-[#4a0020] mb-2 leading-snug">
-                {activeModalGift.title}
-              </h3>
-
-              <p className="text-rose-900 text-xs sm:text-sm leading-relaxed mb-5 font-sans font-medium">
-                {activeModalGift.content}
-              </p>
-
-              <div className="flex justify-between items-center pt-3 border-t border-pink-100">
+                {/* Close Button */}
                 <button
                   onClick={handleCloseModal}
-                  className="px-4 py-2 rounded-full bg-pink-100/80 text-rose-800 font-bold text-xs hover:bg-pink-200 transition-colors cursor-pointer"
+                  className="absolute top-4 right-4 p-1.5 rounded-full bg-pink-100 text-rose-800 hover:bg-pink-200 transition-colors cursor-pointer"
                 >
-                  Close
+                  <X className="w-4 h-4" />
                 </button>
 
-                <button
-                  onClick={() => {
-                    handleCloseModal();
-                    onNext();
-                  }}
-                  className="px-5 py-2 rounded-full bg-gradient-to-r from-pink-500 to-rose-600 text-white font-bold text-xs shadow-sm hover:shadow-md transition-all cursor-pointer flex items-center gap-1.5"
-                >
-                  <span>Next Surprise 🎂</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </button>
-              </div>
+                <span className="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-pink-100 text-rose-800 border border-pink-200 mb-2 inline-block">
+                  {activeModalGift.badge}
+                </span>
+
+                <h3 className="text-xl font-bold font-serif text-[#4a0020] mb-2 leading-snug">
+                  {activeModalGift.title}
+                </h3>
+
+                <p className="text-rose-900 text-xs sm:text-sm leading-relaxed mb-5 font-sans font-medium">
+                  {activeModalGift.content}
+                </p>
+
+                <div className="flex justify-between items-center pt-3 border-t border-pink-100">
+                  <button
+                    onClick={handleCloseModal}
+                    className="px-4 py-2 rounded-full bg-pink-100/80 text-rose-800 font-bold text-xs hover:bg-pink-200 transition-colors cursor-pointer"
+                  >
+                    Close
+                  </button>
+
+                  {nextGift ? (
+                    <button
+                      onClick={() => handleGiftClick(nextGift)}
+                      className="px-5 py-2 rounded-full bg-gradient-to-r from-pink-500 to-rose-600 text-white font-bold text-xs shadow-sm hover:shadow-md transition-all cursor-pointer flex items-center gap-1.5"
+                    >
+                      <span>Next Secret →</span>
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => {
+                        handleCloseModal();
+                        onNext();
+                      }}
+                      className="px-5 py-2 rounded-full bg-gradient-to-r from-pink-500 to-rose-600 text-white font-bold text-xs shadow-sm hover:shadow-md transition-all cursor-pointer flex items-center gap-1.5"
+                    >
+                      <span>Next Surprise →</span>
+                    </button>
+                  )}
+                </div>
+              </motion.div>
             </motion.div>
-          </motion.div>
-        )}
+          );
+        })()}
       </AnimatePresence>
     </motion.div>
   );

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Volume2, VolumeX, Music } from 'lucide-react';
+import { Volume2, VolumeX } from 'lucide-react';
 import { useSound } from '../../context/SoundContext';
 
 export const AudioToggle = () => {

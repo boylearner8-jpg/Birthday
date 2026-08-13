@@ -22,7 +22,7 @@ export const Scene5LoveLetter = ({ onNext, setCustomDialogue }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0, filter: 'blur(8px)', transition: { duration: 0.6 } }}
-      className="relative z-10 w-full h-full overflow-hidden flex flex-col items-center justify-start pt-9 sm:pt-13 px-3"
+      className="relative z-10 w-full h-full max-h-full overflow-hidden flex flex-col items-center justify-start pt-5 sm:pt-9 px-3"
     >
       {/* ═══════════════════════════════════════════════════════
           GROUP 1 — Badge · Headline · Subtitle · Heart Divider
@@ -121,8 +121,9 @@ export const Scene5LoveLetter = ({ onNext, setCustomDialogue }) => {
                 {/* Profile Picture Circle Seal */}
                 <div className="w-26 h-26 sm:w-30 sm:h-30 rounded-full bg-gradient-to-br from-pink-300 via-rose-300 to-pink-400 p-1.5 shadow-[0_6px_22px_rgba(244,63,94,0.3)] flex items-center justify-center border-2 border-white/90 overflow-hidden">
                   <img
-                    src="/images/cat_pfp.png"
+                    src="/images/cat_pfp.webp"
                     alt="Cat Profile"
+                    loading="lazy"
                     className="w-full h-full object-cover rounded-full group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>

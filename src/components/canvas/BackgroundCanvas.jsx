@@ -7,7 +7,7 @@ export const BackgroundCanvas = ({ activeScene }) => {
       <div
         className="absolute inset-0 w-full h-full"
         style={{
-          backgroundImage: 'url(/images/main_bg.jpg)',
+          backgroundImage: 'url(/images/main_bg.webp)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',

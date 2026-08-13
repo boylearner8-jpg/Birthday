@@ -8,5 +8,16 @@ export default defineConfig({
   server: {
     port: 3000,
     open: true
+  },
+  build: {
+    target: 'es2020',
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'vendor-motion': ['framer-motion'],
+          'vendor-ui': ['lucide-react', 'canvas-confetti', 'howler'],
+        }
+      }
+    }
   }
 });
