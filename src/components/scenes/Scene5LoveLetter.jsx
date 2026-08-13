@@ -4,7 +4,7 @@ import { Heart, ArrowRight } from 'lucide-react';
 import { birthdayData } from '../../data/birthdayData';
 import { useSound } from '../../context/SoundContext';
 
-export const Scene5LoveLetter = ({ onNext }) => {
+export const Scene5LoveLetter = ({ onNext, setCustomDialogue }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { playSfx } = useSound();
 
@@ -12,6 +12,9 @@ export const Scene5LoveLetter = ({ onNext }) => {
     if (isOpen) return;
     playSfx('letterOpen');
     setIsOpen(true);
+    if (setCustomDialogue) {
+      setCustomDialogue("");
+    }
   };
 
   return (
@@ -19,7 +22,7 @@ export const Scene5LoveLetter = ({ onNext }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0, filter: 'blur(8px)', transition: { duration: 0.6 } }}
-      className="relative z-10 w-full h-full overflow-hidden flex flex-col items-center justify-start pt-8 sm:pt-12 px-3"
+      className="relative z-10 w-full h-full overflow-hidden flex flex-col items-center justify-start pt-9 sm:pt-13 px-3"
     >
       {/* ═══════════════════════════════════════════════════════
           GROUP 1 — Badge · Headline · Subtitle · Heart Divider
@@ -30,7 +33,7 @@ export const Scene5LoveLetter = ({ onNext }) => {
           initial={{ y: -10, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.45 }}
-          className="inline-flex items-center gap-1.5 px-4 py-1 rounded-full border border-pink-300/80 text-[10px] sm:text-xs font-bold tracking-wider text-rose-800 uppercase shadow-sm backdrop-blur-sm mb-1.5"
+          className="inline-flex items-center gap-1.5 px-4 py-1 rounded-full border border-pink-300/80 text-[10px] sm:text-xs font-bold tracking-wider text-rose-800 uppercase shadow-sm backdrop-blur-sm mb-3.5 sm:mb-4.5"
           style={{ background: 'rgba(255, 255, 255, 0.78)' }}
         >
           FROM MY SOUL TO YOURS 💌
@@ -69,7 +72,7 @@ export const Scene5LoveLetter = ({ onNext }) => {
         </div>
 
         {/* Heart Divider ───── ♥ ───── */}
-        <div className="flex items-center justify-center gap-2.5 w-32 sm:w-40 mt-1.5 mb-3 shrink-0">
+        <div className="flex items-center justify-center gap-2.5 w-32 sm:w-40 mt-0.5 mb-1 shrink-0">
           <div className="flex-1 h-[1px] bg-pink-300/60" />
           <span className="text-xs text-rose-400 select-none">♥</span>
           <div className="flex-1 h-[1px] bg-pink-300/60" />

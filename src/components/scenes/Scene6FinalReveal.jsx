@@ -24,14 +24,14 @@ export const Scene6FinalReveal = ({ onReplay }) => {
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 1 }}
-      className="relative z-10 flex flex-col items-center justify-center h-full max-h-full px-4 py-2 max-w-3xl mx-auto text-center overflow-hidden"
+      className="relative z-10 flex flex-col items-center justify-start pt-10 sm:pt-14 px-4 max-w-3xl mx-auto text-center overflow-hidden h-full"
     >
       {/* Top Banner */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
-        className="mb-2 px-4 py-1 rounded-full bg-white/80 border border-pink-300/80 text-[11px] sm:text-xs font-bold tracking-wider text-rose-800 uppercase shadow-sm backdrop-blur-sm"
+        className="mb-3.5 sm:mb-4 px-4 py-1 rounded-full bg-white/80 border border-pink-300/80 text-[11px] sm:text-xs font-bold tracking-wider text-rose-800 uppercase shadow-sm backdrop-blur-sm"
       >
         {birthdayData.finale.headline}
       </motion.div>
@@ -41,7 +41,7 @@ export const Scene6FinalReveal = ({ onReplay }) => {
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4 }}
-        className="text-2xl sm:text-4xl font-extrabold text-[#4a0020] font-serif mb-1.5 drop-shadow-sm"
+        className="text-2xl sm:text-4xl font-extrabold text-[#4a0020] font-serif mb-2.5 drop-shadow-sm"
       >
         {birthdayData.finale.title}
       </motion.h2>
@@ -50,7 +50,7 @@ export const Scene6FinalReveal = ({ onReplay }) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.6 }}
-        className="text-rose-900 text-xs sm:text-sm font-medium max-w-md mb-3"
+        className="text-rose-900 text-xs sm:text-sm font-medium max-w-md mb-2.5 sm:mb-3"
       >
         {birthdayData.finale.subtext}
       </motion.p>
@@ -60,7 +60,7 @@ export const Scene6FinalReveal = ({ onReplay }) => {
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ delay: 0.8, duration: 0.8, type: 'spring' }}
-        className="relative my-2 w-full max-w-xs sm:max-w-sm rounded-3xl p-2.5 bg-white border-2 border-pink-200 shadow-xl overflow-hidden group"
+        className="relative mt-1.5 mb-3.5 w-full max-w-xs sm:max-w-sm rounded-3xl p-2.5 bg-white border-2 border-pink-200 shadow-xl overflow-hidden group"
       >
         <div className="relative w-full h-48 sm:h-56 rounded-2xl overflow-hidden bg-rose-50 border border-pink-100">
           <img
@@ -86,13 +86,13 @@ export const Scene6FinalReveal = ({ onReplay }) => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.1 }}
-        className="mt-4"
+        className="mt-5 sm:mt-7"
       >
         <button
           onClick={onReplay}
-          className="px-7 py-3 rounded-full bg-gradient-to-r from-pink-500 via-rose-500 to-pink-600 text-white font-bold text-xs sm:text-sm shadow-md shadow-rose-400/40 hover:shadow-rose-500/60 transition-all flex items-center gap-2 cursor-pointer group hover:scale-105"
+          className="px-9 py-3.5 sm:py-4 rounded-full bg-gradient-to-r from-pink-500 via-rose-500 to-pink-600 text-white font-bold text-sm sm:text-base shadow-lg shadow-rose-400/40 hover:shadow-rose-500/60 transition-all flex items-center gap-2.5 cursor-pointer group hover:scale-105"
         >
-          <RotateCcw className="w-4 h-4 group-hover:-rotate-90 transition-transform duration-300" />
+          <RotateCcw className="w-5 h-5 group-hover:-rotate-90 transition-transform duration-300" />
           <span>{birthdayData.finale.replayButtonText}</span>
         </button>
       </motion.div>

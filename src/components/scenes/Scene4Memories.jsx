@@ -25,13 +25,13 @@ export const Scene4Memories = ({ onNext }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0, filter: 'blur(8px)', transition: { duration: 0.6 } }}
-      className="relative z-10 w-full h-full overflow-hidden flex flex-col items-center justify-center px-4 py-2 max-w-md mx-auto text-center"
+      className="relative z-10 w-full h-full overflow-hidden flex flex-col items-center justify-start pt-10 sm:pt-14 px-4 max-w-md mx-auto text-center"
     >
       {/* Section Badge Pill */}
       <motion.div
         initial={{ y: -10, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        className="mb-1.5 px-4 py-1 rounded-full bg-white/80 border border-pink-300/80 text-[11px] sm:text-xs font-bold tracking-wider text-rose-800 uppercase shadow-sm backdrop-blur-sm shrink-0"
+        className="mb-3.5 sm:mb-4 px-4 py-1 rounded-full bg-white/80 border border-pink-300/80 text-[11px] sm:text-xs font-bold tracking-wider text-rose-800 uppercase shadow-sm backdrop-blur-sm shrink-0"
       >
         OUR MEMORIES 📸
       </motion.div>
@@ -41,7 +41,7 @@ export const Scene4Memories = ({ onNext }) => {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.15 }}
-        className="text-2xl sm:text-3xl font-extrabold text-[#4a0020] mb-1 font-serif leading-tight drop-shadow-sm shrink-0"
+        className="text-2xl sm:text-3xl font-extrabold text-[#4a0020] mb-0.5 font-serif leading-tight drop-shadow-sm shrink-0"
       >
         {birthdayData.memories.headline}
       </motion.h2>
@@ -51,13 +51,13 @@ export const Scene4Memories = ({ onNext }) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.25 }}
-        className="text-rose-900 text-xs sm:text-sm font-medium max-w-xs sm:max-w-md mb-2 shrink-0"
+        className="text-rose-900 text-xs sm:text-sm font-medium max-w-xs sm:max-w-md mb-0.5 shrink-0"
       >
         {birthdayData.memories.subtext}
       </motion.p>
 
       {/* Physical Photo Stack Container */}
-      <div className="relative w-full max-w-[280px] sm:max-w-[320px] h-[300px] sm:h-[330px] my-1 flex items-center justify-center shrink-0">
+      <div className="relative w-full max-w-[280px] sm:max-w-[320px] h-[300px] sm:h-[330px] mt-0 mb-1 flex items-center justify-center shrink-0">
         <AnimatePresence mode="popLayout">
           {photos.map((photo, index) => {
             const relativeIndex = (index - currentIndex + photos.length) % photos.length;
@@ -149,7 +149,7 @@ export const Scene4Memories = ({ onNext }) => {
         onClick={onNext}
         whileHover={{ scale: 1.04 }}
         whileTap={{ scale: 0.95 }}
-        className="mt-1 px-7 py-2.5 rounded-full bg-gradient-to-r from-pink-500 via-rose-500 to-pink-600 text-white font-bold text-xs sm:text-sm shadow-md shadow-rose-400/40 hover:shadow-rose-500/60 transition-all cursor-pointer flex items-center gap-1.5 shrink-0 group"
+        className="mt-4 sm:mt-5 px-7 py-2.5 rounded-full bg-gradient-to-r from-pink-500 via-rose-500 to-pink-600 text-white font-bold text-xs sm:text-sm shadow-md shadow-rose-400/40 hover:shadow-rose-500/60 transition-all cursor-pointer flex items-center gap-1.5 shrink-0 group"
       >
         <span>Read Love Letter ✉️</span>
         <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

@@ -13,21 +13,28 @@ const sceneDialogues = {
   6: "That was the last surprise... but my love isn't! 🥹💕",
 };
 
-export const CuteCompanion = ({ activeScene = 0 }) => {
+export const CuteCompanion = ({ activeScene = 0, customDialogue = null }) => {
   const [hearts, setHearts] = useState([]);
   const [showSpeech, setShowSpeech] = useState(true);
   const { playSfx } = useSound();
 
-  const currentDialogue = sceneDialogues[activeScene] || "Happy Birthday, my love! ❤️";
+  const isHidden = customDialogue === "" || customDialogue === false;
+  const currentDialogue = customDialogue || sceneDialogues[activeScene] || "Happy Birthday, my love! ❤️";
 
-  // Re-trigger speech bubble bounce when scene changes
+  // Re-trigger speech bubble bounce when scene or custom dialogue changes
   useEffect(() => {
-    setShowSpeech(true);
-  }, [activeScene]);
+    if (isHidden) {
+      setShowSpeech(false);
+    } else {
+      setShowSpeech(true);
+    }
+  }, [activeScene, customDialogue, isHidden]);
 
   const handleTapAvatar = () => {
     playSfx('chime');
-    setShowSpeech(true);
+    if (!isHidden) {
+      setShowSpeech(true);
+    }
 
     // Spawn mini floating heart burst
     const newHeart = {
@@ -46,12 +53,12 @@ export const CuteCompanion = ({ activeScene = 0 }) => {
   return (
     <div
       className={`fixed z-30 flex flex-col items-start pointer-events-none select-none transition-all duration-300 ${
-        isScene3 ? 'bottom-2 left-2 sm:bottom-3 sm:left-3' : 'bottom-4 left-3 sm:left-5'
+        isScene3 ? 'bottom-1 left-1.5 sm:bottom-2 sm:left-2' : 'bottom-4 left-3 sm:left-5'
       }`}
     >
       {/* Dynamic Floating Speech Bubble */}
       <AnimatePresence mode="wait">
-        {showSpeech && (
+        {showSpeech && !isHidden && (
           <motion.div
             key={`speech-${activeScene}`}
             initial={{ opacity: 0, y: 8, scale: 0.9 }}
@@ -59,17 +66,17 @@ export const CuteCompanion = ({ activeScene = 0 }) => {
             exit={{ opacity: 0, scale: 0.8 }}
             transition={{ duration: 0.35 }}
             onClick={handleTapAvatar}
-            className={`mb-1.5 rounded-2xl bg-white/95 border-2 border-pink-200 font-semibold text-rose-950 shadow-md shadow-pink-300/20 backdrop-blur-md relative cursor-pointer ${
+            className={`mb-1 rounded-2xl bg-white/95 border-2 border-pink-200 font-semibold text-rose-950 shadow-md shadow-pink-300/20 backdrop-blur-md relative cursor-pointer ${
               isScene3
-                ? 'max-w-[115px] sm:max-w-[140px] px-2.5 py-1.5 text-[10px] sm:text-[11px]'
+                ? 'max-w-[95px] sm:max-w-[115px] px-2 py-1 text-[9px] sm:text-[10px] leading-tight'
                 : 'max-w-[145px] sm:max-w-[185px] px-3.5 py-2 text-[11px] sm:text-xs'
             }`}
           >
-            <p className="leading-snug">
+            <p className="leading-tight">
               {currentDialogue}
             </p>
             {/* Pointer arrow pointing down toward avatar */}
-            <div className="absolute -bottom-1.5 left-3.5 w-2.5 h-2.5 bg-white border-r-2 border-b-2 border-pink-200 rotate-45" />
+            <div className="absolute -bottom-1.5 left-3 w-2.5 h-2.5 bg-white border-r-2 border-b-2 border-pink-200 rotate-45" />
           </motion.div>
         )}
       </AnimatePresence>
@@ -96,7 +103,7 @@ export const CuteCompanion = ({ activeScene = 0 }) => {
           whileHover={{ scale: 1.06, rotate: 2 }}
           whileTap={{ scale: 0.94 }}
           className={`relative flex items-center justify-center filter drop-shadow-[0_5px_10px_rgba(244,63,94,0.2)] ${
-            isScene3 ? 'w-[50px] sm:w-[60px]' : 'w-[64px] sm:w-[76px]'
+            isScene3 ? 'w-[42px] sm:w-[50px]' : 'w-[64px] sm:w-[76px]'
           }`}
         >
           <img

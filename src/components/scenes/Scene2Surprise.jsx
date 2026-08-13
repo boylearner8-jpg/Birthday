@@ -10,6 +10,12 @@ const iconMap = {
   Gift: Gift,
 };
 
+const cardAccents = {
+  1: 'from-pink-400 via-rose-400 to-pink-500',
+  2: 'from-rose-400 via-pink-500 to-rose-600',
+  3: 'from-pink-500 via-rose-400 to-amber-400',
+};
+
 export const Scene2Surprise = ({ onNext }) => {
   const [openedGifts, setOpenedGifts] = useState([]);
   const [activeModalGift, setActiveModalGift] = useState(null);
@@ -29,85 +35,103 @@ export const Scene2Surprise = ({ onNext }) => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.9, y: 20 }}
-      animate={{ opacity: 1, scale: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 1.05, y: -20, transition: { duration: 0.5 } }}
-      className="relative z-10 flex flex-col items-center justify-center h-full max-h-full px-4 py-2 max-w-4xl mx-auto text-center overflow-hidden"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0, filter: 'blur(8px)', transition: { duration: 0.5 } }}
+      className="relative z-10 w-full h-full overflow-hidden flex flex-col items-center justify-start pt-10 sm:pt-14 px-3"
     >
-      {/* Scene Header */}
-      <motion.p
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="text-rose-900 font-bold text-xs md:text-sm tracking-widest uppercase mb-1"
-      >
-        Surprise Level 02 ✨
-      </motion.p>
+      {/* ═══════════════════════════════════════════════════════
+          GROUP 1 — Header (Badge · Title · Subtext)
+          ═══════════════════════════════════════════════════════ */}
+      <div className="flex flex-col items-center w-full shrink-0 mb-6 sm:mb-8">
+        {/* Badge Pill */}
+        <motion.div
+          initial={{ y: -10, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.45 }}
+          className="inline-flex items-center gap-1.5 px-4 py-1 rounded-full border border-pink-300/80 text-[10px] sm:text-xs font-bold tracking-wider text-rose-800 uppercase shadow-sm backdrop-blur-sm mb-3.5 sm:mb-4.5"
+          style={{ background: 'rgba(255, 255, 255, 0.78)' }}
+        >
+          SURPRISE LEVEL 02 ✨
+        </motion.div>
 
-      <motion.h2
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2 }}
-        className="text-2xl md:text-5xl font-extrabold text-rose-950 mb-1 font-serif drop-shadow-sm"
-      >
-        Wait... there's more. ✨
-      </motion.h2>
+        {/* Main Title */}
+        <motion.h2
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.12 }}
+          className="text-2xl sm:text-3xl font-serif font-extrabold text-[#4a0020] text-center leading-tight mb-1 drop-shadow-sm"
+        >
+          Wait... there's more. ✨
+        </motion.h2>
 
-      <motion.p
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.3 }}
-        className="text-rose-900 text-xs md:text-base font-medium max-w-md mb-4 md:mb-8"
-      >
-        Tap and unwrap each mystery box below to reveal secret messages & birthday vouchers!
-      </motion.p>
+        {/* Instruction Subtext */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.22 }}
+          className="text-rose-900/90 text-xs sm:text-sm font-medium max-w-xs sm:max-w-md text-center leading-relaxed"
+        >
+          Tap and unwrap each mystery box below to reveal secret messages & birthday vouchers!
+        </motion.p>
+      </div>
 
-      {/* Interactive 3 Gift Boxes Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-6 w-full mb-4 md:mb-8">
+      {/* ═══════════════════════════════════════════════════════
+          GROUP 2 — 3 Elegant Gift Cards (Stacking Vertically)
+          ═══════════════════════════════════════════════════════ */}
+      <div className="flex flex-col gap-3 w-full max-w-[340px] items-center shrink-0">
         {birthdayData.gifts.map((gift, index) => {
           const IconComponent = iconMap[gift.iconName] || Gift;
           const isOpened = openedGifts.includes(gift.id);
+          const gradientAccent = cardAccents[gift.id] || 'from-pink-400 to-rose-500';
 
           return (
             <motion.div
               key={gift.id}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 + index * 0.15 }}
-              whileHover={{ y: -6, scale: 1.03 }}
-              whileTap={{ scale: 0.94 }}
+              transition={{ delay: 0.3 + index * 0.12 }}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.97 }}
               onClick={() => handleGiftClick(gift)}
-              className={`relative cursor-pointer rounded-2xl md:rounded-3xl p-3 md:p-6 bg-white border-2 md:border-3 ${
+              className={`w-full p-3.5 sm:p-4 rounded-[24px] bg-gradient-to-b from-white/95 via-pink-50/90 to-rose-50/95 border-2 text-left cursor-pointer transition-all duration-300 flex items-center gap-3.5 relative overflow-hidden backdrop-blur-md group ${
                 isOpened
-                  ? 'border-rose-400 bg-rose-50/90 shadow-md'
-                  : 'border-pink-200 hover:border-rose-400 shadow-xl'
-              } transition-all duration-300 group flex flex-row sm:flex-col items-center justify-between sm:justify-between min-h-[70px] sm:min-h-[200px]`}
+                  ? 'border-pink-300 shadow-[0_4px_16px_rgba(244,63,94,0.12)]'
+                  : 'border-pink-200/90 shadow-[0_8px_24px_rgba(244,63,94,0.16)] hover:border-pink-300'
+              }`}
             >
-              {/* Top status indicator */}
-              <div className="w-full flex justify-between items-center text-[10px] md:text-xs">
-                <span className="px-2 py-0.5 md:px-3 md:py-1 rounded-full bg-pink-100 text-rose-800 font-bold border border-pink-300">
-                  {gift.boxTitle}
-                </span>
-                {isOpened && (
-                  <span className="flex items-center gap-1 text-emerald-600 font-bold text-[10px] md:text-xs">
-                    <CheckCircle2 className="w-3 h-3 md:w-3.5 md:h-3.5" /> Opened
-                  </span>
-                )}
-              </div>
+              {/* Subtle background glow */}
+              <div className="absolute inset-0 bg-gradient-to-r from-pink-200/20 via-transparent to-rose-200/20 rounded-[24px] blur-md -z-10 group-hover:opacity-100 transition-opacity opacity-60" />
 
-              {/* Floating Gift Box Icon Graphic */}
-              <div className="my-1 sm:my-3 relative">
+              {/* Gift Icon Seal Badge */}
+              <div className="relative shrink-0 flex items-center justify-center">
                 <div
-                  className={`w-10 h-10 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-xl sm:rounded-2xl bg-gradient-to-br ${gift.accentColor} flex items-center justify-center shadow-lg group-hover:scale-110 transition-all duration-300 animate-float`}
+                  className={`w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br ${gradientAccent} p-3 shadow-md shadow-pink-400/25 flex items-center justify-center border-2 border-white/90 group-hover:scale-105 transition-transform duration-300`}
                 >
-                  <IconComponent className="w-5 h-5 sm:w-8 sm:h-8 md:w-10 md:h-10 text-white drop-shadow-md" />
+                  <IconComponent className="w-6 h-6 sm:w-7 sm:h-7 text-white filter drop-shadow-sm" />
                 </div>
               </div>
 
-              <div className="text-left sm:text-center">
-                <h3 className="font-bold text-rose-950 text-xs sm:text-sm md:text-base mb-0.5">
+              {/* Card Title & Content */}
+              <div className="flex-1 min-w-0 pr-1">
+                <div className="flex justify-between items-center mb-0.5">
+                  <span className="px-2 py-0.5 rounded-full bg-pink-100/90 text-rose-800 text-[9px] sm:text-[10px] font-bold tracking-wider uppercase border border-pink-200">
+                    {gift.boxTitle}
+                  </span>
+
+                  {isOpened && (
+                    <span className="flex items-center gap-1 text-emerald-600 font-bold text-[10px] bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+                      <CheckCircle2 className="w-3 h-3 text-emerald-500" />
+                      <span>Opened</span>
+                    </span>
+                  )}
+                </div>
+
+                <h3 className="font-serif font-bold text-[#4a0020] text-sm sm:text-base leading-snug truncate">
                   {gift.badge}
                 </h3>
-                <p className="text-[10px] md:text-xs text-rose-700 line-clamp-1 sm:line-clamp-2">
+
+                <p className="text-[11px] sm:text-xs font-medium text-rose-800/80 truncate">
                   {isOpened ? "Tap to view again ✨" : gift.previewText}
                 </p>
               </div>
@@ -116,23 +140,27 @@ export const Scene2Surprise = ({ onNext }) => {
         })}
       </div>
 
-      {/* Prominent Next Stage Action Button */}
+      {/* ═══════════════════════════════════════════════════════
+          GROUP 3 — Action Button ("Continue To Birthday Moment 🎂")
+          ═══════════════════════════════════════════════════════ */}
       <motion.div
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.6 }}
-        className="flex flex-col items-center gap-3 my-2"
+        transition={{ delay: 0.65 }}
+        className="mt-8 sm:mt-10 shrink-0"
       >
         <button
           onClick={onNext}
-          className="px-8 py-3.5 rounded-full bg-gradient-to-r from-pink-500 via-rose-500 to-pink-600 text-white font-bold text-sm md:text-base shadow-lg shadow-rose-400/40 hover:shadow-rose-500/60 transition-all flex items-center gap-2 cursor-pointer group hover:scale-105"
+          className="px-7 py-3 rounded-full bg-gradient-to-r from-pink-500 via-rose-500 to-pink-600 text-white font-bold text-xs sm:text-sm shadow-md shadow-rose-400/40 hover:shadow-rose-500/60 transition-all flex items-center gap-2 cursor-pointer group hover:scale-105"
         >
           <span>Continue To Birthday Moment 🎂</span>
           <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
         </button>
       </motion.div>
 
-      {/* Modal View for Opened Gift Content */}
+      {/* ═══════════════════════════════════════════════════════
+          Modal View for Opened Gift Content
+          ═══════════════════════════════════════════════════════ */}
       <AnimatePresence>
         {activeModalGift && (
           <motion.div
@@ -143,36 +171,36 @@ export const Scene2Surprise = ({ onNext }) => {
             className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-rose-950/40 backdrop-blur-md"
           >
             <motion.div
-              initial={{ scale: 0.8, y: 20 }}
+              initial={{ scale: 0.88, y: 15 }}
               animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.8, y: 20 }}
+              exit={{ scale: 0.88, y: 15 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-lg p-6 md:p-8 rounded-3xl bg-white border-4 border-pink-200 text-left shadow-2xl overflow-hidden"
+              className="relative w-full max-w-sm rounded-[32px] bg-white/98 border-2 border-pink-200 p-6 text-left shadow-[0_16px_48px_rgba(244,63,94,0.25)] overflow-hidden"
             >
               {/* Close Button */}
               <button
                 onClick={handleCloseModal}
-                className="absolute top-4 right-4 p-2 rounded-full bg-pink-100 text-rose-800 hover:bg-pink-200 transition-colors cursor-pointer"
+                className="absolute top-4 right-4 p-1.5 rounded-full bg-pink-100 text-rose-800 hover:bg-pink-200 transition-colors cursor-pointer"
               >
-                <X className="w-5 h-5" />
+                <X className="w-4 h-4" />
               </button>
 
-              <span className="px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-pink-100 text-rose-800 border border-pink-300 mb-3 inline-block">
+              <span className="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-pink-100 text-rose-800 border border-pink-200 mb-2 inline-block">
                 {activeModalGift.badge}
               </span>
 
-              <h3 className="text-2xl font-bold text-rose-950 mb-3 font-serif">
+              <h3 className="text-xl font-bold font-serif text-[#4a0020] mb-2 leading-snug">
                 {activeModalGift.title}
               </h3>
 
-              <p className="text-rose-900 text-base leading-relaxed mb-6 font-sans">
+              <p className="text-rose-900 text-xs sm:text-sm leading-relaxed mb-5 font-sans font-medium">
                 {activeModalGift.content}
               </p>
 
-              <div className="flex justify-between items-center pt-2 border-t border-pink-100">
+              <div className="flex justify-between items-center pt-3 border-t border-pink-100">
                 <button
                   onClick={handleCloseModal}
-                  className="px-5 py-2 rounded-full bg-pink-100 text-rose-800 font-bold text-xs hover:bg-pink-200 transition-colors cursor-pointer"
+                  className="px-4 py-2 rounded-full bg-pink-100/80 text-rose-800 font-bold text-xs hover:bg-pink-200 transition-colors cursor-pointer"
                 >
                   Close
                 </button>
@@ -182,9 +210,9 @@ export const Scene2Surprise = ({ onNext }) => {
                     handleCloseModal();
                     onNext();
                   }}
-                  className="px-6 py-2.5 rounded-full bg-gradient-to-r from-pink-500 to-rose-600 text-white font-bold text-xs shadow-md hover:shadow-lg transition-all cursor-pointer flex items-center gap-1.5"
+                  className="px-5 py-2 rounded-full bg-gradient-to-r from-pink-500 to-rose-600 text-white font-bold text-xs shadow-sm hover:shadow-md transition-all cursor-pointer flex items-center gap-1.5"
                 >
-                  <span>Next Scene 🎂</span>
+                  <span>Next Surprise 🎂</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </button>
               </div>

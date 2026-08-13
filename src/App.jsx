@@ -20,6 +20,7 @@ export default function App() {
 
   const [isUnlocked, setIsUnlocked] = useState(!isPasscodeEnabled);
   const [scene, setScene] = useState(isPasscodeEnabled ? 0 : 1);
+  const [customCompanionDialogue, setCustomCompanionDialogue] = useState(null);
 
   // Hard lock: prevents nextScene from firing more than once per 1.5 seconds
   const isTransitioning = useRef(false);
@@ -27,6 +28,7 @@ export default function App() {
   const handleUnlockPasscode = () => {
     setIsUnlocked(true);
     setScene(1);
+    setCustomCompanionDialogue(null);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -38,6 +40,8 @@ export default function App() {
       return;
     }
     isTransitioning.current = true;
+
+    setCustomCompanionDialogue(null);
 
     setScene((prev) => {
       const next = Math.min(prev + 1, 6);
@@ -55,6 +59,7 @@ export default function App() {
 
   const restartExperience = () => {
     isTransitioning.current = false;
+    setCustomCompanionDialogue(null);
     if (isPasscodeEnabled) {
       setIsUnlocked(false);
       setScene(0);
@@ -79,7 +84,7 @@ export default function App() {
       case 4:
         return <Scene4Memories key="scene-4" onNext={nextScene} />;
       case 5:
-        return <Scene5LoveLetter key="scene-5" onNext={nextScene} />;
+        return <Scene5LoveLetter key="scene-5" onNext={nextScene} setCustomDialogue={setCustomCompanionDialogue} />;
       case 6:
         return <Scene6FinalReveal key="scene-6" onReplay={restartExperience} />;
       default:
@@ -111,7 +116,7 @@ export default function App() {
           </AnimatePresence>
         </main>
 
-        <CuteCompanion activeScene={isUnlocked ? scene : 0} />
+        <CuteCompanion activeScene={isUnlocked ? scene : 0} customDialogue={customCompanionDialogue} />
 
         <footer className="relative z-40 py-1.5 px-4 max-w-md mx-auto w-full flex justify-center items-center shrink-0">
           <p className="text-[10px] md:text-[11px] text-rose-900 font-extrabold font-mono tracking-widest uppercase text-center drop-shadow-sm">

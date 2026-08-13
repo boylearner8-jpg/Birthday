@@ -215,7 +215,7 @@ export const Scene3BirthdayMoment = ({ onNext }) => {
         transition={{ delay: 0.38, duration: 0.55 }}
         className="relative shrink-0"
         style={{
-          width: 'clamp(180px,63vw,255px)',
+          width: 'clamp(155px,54vw,220px)',
           aspectRatio: '1 / 0.84',
           filter: 'drop-shadow(0 8px 18px rgba(200,80,110,0.28))',
         }}
@@ -289,7 +289,7 @@ export const Scene3BirthdayMoment = ({ onNext }) => {
       {/* ═══════════════════════════════════════════════════════
           GROUP 4  —  Instruction / wish pill & Relive Button
           ═══════════════════════════════════════════════════════ */}
-      <div className="flex flex-col items-center shrink-0 w-full" style={{ gap: '12px', marginBottom: '10px' }}>
+      <div className="relative z-40 flex flex-col items-center shrink-0 w-full" style={{ gap: '12px', marginBottom: '10px' }}>
         <AnimatePresence mode="wait">
           {!allBlown ? (
             <motion.button
