@@ -47,7 +47,7 @@ export const Scene3BirthdayMoment = ({ onNext }) => {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      exit={{ opacity: 0, transition: { duration: 0.4 } }}
+      exit={{ opacity: 0, transition: { duration: 0.2 } }}
       /*
        * h-full fills exactly the flex-1 main area.
        * justify-between distributes the 5 groups across that space —

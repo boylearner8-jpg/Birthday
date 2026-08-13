@@ -95,7 +95,7 @@ export const Scene1Opening = ({ onComplete }) => {
       setAnimPhase('glowing');
     }, 600);
 
-    // 4. Dissolve into glowing camera particles at 0.9s
+    // 4. Dissolve into glowing camera particles at 2.5s
     safeTimeout(() => {
       if (isCompleting.current) return;
       setAnimPhase('dissolving');
@@ -105,15 +105,15 @@ export const Scene1Opening = ({ onComplete }) => {
         origin: { y: 0.4 },
         colors: ['#fecdd3', '#fda4af', '#fb7185', '#fff1f2', '#ffd700'],
       });
-    }, 900);
+    }, 2500);
 
-    // 5. Complete & Transition to Scene 2 at exactly 1.2s
+    // 5. Complete & Transition to Scene 2 at exactly 3.1s
     safeTimeout(() => {
       if (!isCompleting.current) {
         isCompleting.current = true;
         onComplete();
       }
-    }, 1200);
+    }, 3100);
   };
 
   const isBoxOpened = animPhase !== 'idle';
@@ -124,7 +124,7 @@ export const Scene1Opening = ({ onComplete }) => {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      exit={{ opacity: 0, transition: { duration: 0.5 } }}
+      exit={{ opacity: 0, transition: { duration: 0.2 } }}
       className="relative z-10 w-full h-full overflow-hidden flex flex-col items-center justify-start gap-3 sm:gap-4"
       style={{
         marginTop: '55px',
@@ -299,7 +299,8 @@ export const Scene1Opening = ({ onComplete }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center pointer-events-none p-4"
+            className="fixed inset-0 z-50 flex items-center justify-center pointer-events-auto p-4 cursor-pointer"
+            onClick={handleLetterClick}
           >
             {/* Soft romance backdrop blur */}
             <motion.div
@@ -338,11 +339,10 @@ export const Scene1Opening = ({ onComplete }) => {
 
             {/* Gorgeous Handwritten Letter Card (Rising directly out of box with gentle rotation) */}
             <motion.div
-              onClick={handleLetterClick}
               initial={{ y: 190, scale: 0.15, rotate: -15, opacity: 0 }}
               animate={
                 animPhase === 'dissolving'
-                  ? { y: -50, scale: 1.8, opacity: 0, filter: 'blur(16px)' }
+                  ? { y: -50, scale: 1.6, opacity: 0 }
                   : { y: -30, scale: 1, rotate: [-15, 6, -3, 0], opacity: 1 }
               }
               transition={
@@ -350,7 +350,7 @@ export const Scene1Opening = ({ onComplete }) => {
                   ? { duration: 0.9, ease: 'easeInOut' }
                   : { duration: 1.0, type: 'spring', stiffness: 70, damping: 13 }
               }
-              className="relative w-full max-w-[320px] sm:max-w-[360px] pointer-events-auto cursor-pointer"
+              className="relative w-full max-w-[240px] sm:max-w-[280px] pointer-events-none"
             >
               {/* Soft Golden/Pink Glow behind the letter card */}
               <motion.div

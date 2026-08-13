@@ -37,7 +37,7 @@ export const Scene2Surprise = ({ onNext }) => {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      exit={{ opacity: 0, transition: { duration: 0.5 } }}
+      exit={{ opacity: 0, transition: { duration: 0.2 } }}
       className="relative z-10 w-full h-full max-h-full overflow-hidden flex flex-col items-center justify-start pt-6 sm:pt-10 px-3"
     >
       {/* ═══════════════════════════════════════════════════════

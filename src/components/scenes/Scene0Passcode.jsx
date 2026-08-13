@@ -87,7 +87,7 @@ export const Scene0Passcode = ({ onUnlock }) => {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      exit={{ opacity: 0, transition: { duration: 0.5 } }}
+      exit={{ opacity: 0, y: -20, transition: { duration: 0.2 } }}
       className="fixed inset-0 z-10 overflow-hidden"
     >
       {/* Full-screen background image */}
